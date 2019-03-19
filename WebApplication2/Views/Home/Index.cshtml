@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div id="item-list">
+
+    @foreach (var item in Model)
+    {
+        <div class="thing">
+            <div class="thing__part">
+                <a href="@Url.Action("ThingInfo", "Shop", new { id = item.ThingId })">
+                    <img class="thing-image" alt="@item.Title" src="@item.ItemArtUrl" />
+                    <br />
+                    <p class="thing__name">@item.Title</p>
+                </a>
+                @String.Format("{0:F}", item.Price)zł
+            </div>
+        </div>
+    }
+
+</div>

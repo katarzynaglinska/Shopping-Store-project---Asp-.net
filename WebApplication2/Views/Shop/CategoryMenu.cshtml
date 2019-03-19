@@ -1,0 +1,11 @@
+﻿
+@model IEnumerable<WebApplication2.Models.Category>
+
+
+@foreach (var category in Model)
+{
+    <li>
+        @Html.ActionLink(category.Name, "Browse", "Shop", new { Category = category.Name }, null)
+    </li>
+
+}

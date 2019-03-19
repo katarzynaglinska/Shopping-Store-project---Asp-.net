@@ -1,0 +1,36 @@
+﻿
+@model WebApplication2.Models.Thing
+@{
+    ViewBag.Title = "Item - " + Model.Title;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-5 col-md-5">
+            <p>
+                <img class="thing__info-img" alt="@Model.Title" src="@Model.ItemArtUrl" />
+            </p>
+        </div>
+        <div class="col-sm-7 col-md-7">
+                <h2 class="thing__detail-name">@Model.Title</h2>
+                <div id="item-details">
+                    <p>
+                        <em>Firma:</em>
+                        @Model.Firm.Name
+                    </p>
+                    <p>
+                        <em>Cena:</em>
+                        @String.Format("{0:F}",Model.Price)zł
+                    </p>
+                    <button type="button" class="btn thing__detail-button">
+                        @Html.ActionLink("Dodaj do koszyka", "AddToCart", "ShoppingCart", new { id = Model.ThingId }, "")
+                    </button>
+                    <p class="thing__detail-info">
+                        Termin realizacji: 10 dni roboczych
+                        <br />
+                        Darmowa Wysyłka Kurierem i Darmowe Zwroty
+                    </p>
+</div>
+            </div>
+        </div>
+</div>

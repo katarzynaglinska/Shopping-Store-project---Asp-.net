@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/index.css")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Sklep", "Index", "Home")</li>
+                    @if ( HttpContext.Current.User.Identity.Name =="admin@wp.pl" )
+                    {
+                        <li>@Html.ActionLink("Zarządzaj produktami", "Index", "Things")</li>
+                    }
+                    
+                </ul>
+                @Html.Partial("_LoginPartial")
+                
+            </div>
+        </div>
+    </div>
+
+    <div id="myCarousel" class="carousel slide">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="item active">
+                <img src="~/Content/Images/slide1.png" class="img-responsive">
+                <div class="container">
+                    <div class="carousel-caption">
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="~/Content/Images/sliede2.png" class="img-responsive">
+                <div class="container">
+                    <div class="carousel-caption">
+
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="~/Content/Images/slide3.png" class="img-responsive">
+                <div class="container">
+                    <div class="carousel-caption">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <i class="glyphicon glyphicon-chevron-left"></i>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <i class="glyphicon glyphicon-chevron-right"></i>
+        </a>
+    </div>
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <nav class="nav">
+                        @{Html.RenderAction("CategoryMenu", "Shop");}
+                    </nav>
+                </div>
+                <div class="container body-content col-sm-9 col-md-9">
+                    @RenderBody()
+
+                </div>
+                <hr />
+                <footer>
+                    <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+                </footer>
+            </div>
+        </div>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+</body>
+</html>
